@@ -36,10 +36,8 @@ def find_synonyms(katakunci, kamus) :
 
     return str(synonyms)
 
-def check_similar(kata1, kata2, kamus) :
+def check_similar(kata1, kata2, synonym1, synonym2) :
 
-    synonym1 = find_synonyms(kata1, kamus)
-    synonym2 = find_synonyms(kata2, kamus)
     if (kata1 in synonym2) or (kata2 in synonym1) :
         return True
     else :
@@ -61,16 +59,18 @@ def input_check_similar() :
     # kata1 = kata_dasar_wordnet(kata1)
     kata1 = kata_dasar_spacy(kata1)
     print('Synonym dari ' + kata1 + ' adalah: ', end = '\n')
-    print(find_synonyms(kata1, katas))
+    synonym1 = find_synonyms(kata1, katas)
+    print(synonym1)
 
     print('Masukkan kata kedua : ', end = '')
     kata2 = str(input())
     # kata2 = kata_dasar_wordnet(kata2)
     kata2 = kata_dasar_spacy(kata2)
     print('Synonym dari ' + kata2 + ' adalah: ', end = '\n')
-    print(find_synonyms(kata2, katas))
+    synonym2 = find_synonyms(kata2, katas)
+    print(synonym2)
 
-    if check_similar(kata1,kata2, katas) :
+    if check_similar(kata1, kata2, synonym1, synonym2) :
         print (kata1 + ' dan ' + kata2 + ' adalah Synonym')
     else :
         print (kata1 + ' dan ' + kata2 + ' bukan Synonym')
